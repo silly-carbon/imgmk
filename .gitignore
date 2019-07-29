@@ -6,3 +6,5 @@ imgmk
 
 # Images
 *.png
+
+.idea/

@@ -6,10 +6,13 @@ import (
 	"fmt"
 	"github.com/lukevers/freetype-go/freetype"
 	"image"
+	"image/color"
 	"image/draw"
 	"image/png"
 	"io/ioutil"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -38,7 +41,26 @@ func main() {
 	}
 
 	// Get the physical image ready with colors/size
-	fg, bg := image.Black, image.White
+	var rgbSplit = strings.Split(*rgb, ",")
+	rgbSplitR, err := strconv.ParseUint(rgbSplit[0], 10, 8)
+	if err != nil {
+		fmt.Printf("Error parsing rgb:r: %s", err)
+		os.Exit(1)
+	}
+	rgbSplitG, err := strconv.ParseUint(rgbSplit[1], 10, 8)
+	if err != nil {
+		fmt.Printf("Error parsing rgb:g: %s", err)
+		os.Exit(1)
+	}
+	rgbSplitB, err := strconv.ParseUint(rgbSplit[2], 10, 8)
+	if err != nil {
+		fmt.Printf("Error parsing rgb:b: %s", err)
+		os.Exit(1)
+	}
+
+	var fgColor = color.RGBA{R: uint8(rgbSplitR), G: uint8(rgbSplitG), B: uint8(rgbSplitB), A: 255}
+	fg, bg := image.NewUniform(fgColor), image.White
+
 	rgba := image.NewRGBA(image.Rect(0, 0, *width, *height))
 
 	// If we passed the transparent flag then we want the

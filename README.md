@@ -94,6 +94,13 @@ If you want the background to be transparent instead of white, pass the transpar
 -transparent
 ```
 
+#### RGB
+
+Specify the RGB color of the font(default black: 0,0,0)
+```bash
+-rgb=123,12,111
+```
+
 This image below was generated with the following:
 
 ```bash

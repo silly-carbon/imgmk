@@ -13,4 +13,5 @@ var (
 	height      = flag.Int("height", 480, "The height of the image")
 	dpi         = flag.Float64("dpi", 300, "The DPI of the image.")
 	transparent = flag.Bool("transparent", false, "Transparent image background")
+	rgb         = flag.String("rgb", "0,0,0", "The RGB color of the text, for instance: 255,0,0")
 )
